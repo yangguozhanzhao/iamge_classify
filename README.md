@@ -1,5 +1,7 @@
 # 摄像头动态二/多分类应用
 
+
+
 ## 1. 软件功能
 
 * 在树莓派（mac或者win）利用摄像头实现：
@@ -21,3 +23,11 @@
   * a类200,b类一种不良200,c类100,测试效果比较好
   * 镜头对准被测物体，被测物体多移动
   * 应用到单路接收器上基本没有问题
+  ### 运行环境
+- python2.7 opencv可以直接安装
+- python27需要的库
+  - sudo apt install python-opencv
+  - sudo apt-get install python-imaging-tk
+  - wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v1.1.0/tensorflow-1.1.0-cp27-none-linux_armv7l.whl
+sudo pip install tensorflow-1.1.0-cp27-none-linux_armv7l.whl
+  

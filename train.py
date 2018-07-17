@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-#%%
-
 import os
 import numpy as np
 import tensorflow as tf
@@ -8,14 +6,13 @@ import input_data
 import CNN
 import argparse
 
-
 def main():
     
     data_path = os.path.join(FLAGS.buckets, "")
     logs_dir=os.path.join(FLAGS.checkpointDir, "")
     
-    n_classes = 3
-    image_size = 100  # resize the image, if the input image is too large, training will be very slow.
+    n_classes = 7
+    image_size = 64  # resize the image, if the input image is too large, training will be very slow.
     batch_size = 64
     max_step = 300 # with current parameters, it is suggested to use MAX_STEP>10k
     learning_rate = 0.0001 # with current parameters, it is suggested to use learning rate<0.0001
@@ -38,17 +35,17 @@ def main():
     
     
     
-    #summary_op = tf.summary.merge_all()
-    summary_op = tf.merge_all_summaries() 
+    summary_op = tf.summary.merge_all()
+    #summary_op = tf.merge_all_summaries() 
     
     with tf.Session() as sess:
-        train_writer = tf.train.SummaryWriter(logs_dir+'train/',sess.graph)
-        test_writer =tf.train.SummaryWriter(logs_dir+'test/',sess.graph)
+        train_writer = tf.summary.FileWriter (logs_dir+'train/',sess.graph)
+        test_writer =tf.summary.FileWriter (logs_dir+'test/',sess.graph)
         
 
         saver=tf.train.Saver()
-        #sess.run(tf.global_variables_initializer())
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
+       # sess.run(tf.initialize_all_variables())
         
         # start queue runner
         coord = tf.train.Coordinator()
